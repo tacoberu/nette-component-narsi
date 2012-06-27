@@ -1,0 +1,28 @@
+<ul n:if="$model">
+	{block #menu}
+		{foreach $model as $item}
+			{if !($item instanceof \Narsi\NodeHide)}
+				<li>
+					{if $item instanceof \Narsi\NodeLabel}
+						<span>{$item->label}</span>
+					{elseif $item instanceof \Narsi\NodeLink}
+						{if $item->isDisabled}
+						<span>{$item->label}</span>
+						{else}
+						<a n:class="$item->ajax, $item->isCurrent ? current" href="{$item->url}"><span>{$item->label}</span></a>
+						{/if}
+					{else}
+						{control $item->control}
+					{/if}
+
+					{if $renderChildren && count($item->getComponentsExt()) > 0}
+					<ul>
+						{include #menu, model => $item->getComponents()}
+					</ul>
+					{/if}
+
+				</li>
+			{/if}
+		{/foreach}
+	{/block}
+</ul>
