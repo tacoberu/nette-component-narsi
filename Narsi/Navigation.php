@@ -28,12 +28,12 @@ class Navigation extends Control
 {
 
 	private $showRules;
-	
+
 
 	private $counter = 0;
-	
-	
-	
+
+
+
 	/**
 	 * Adds push buttons with no default behavior.
 	 * @param  string  control name
@@ -76,14 +76,14 @@ class Navigation extends Control
 		foreach (parent::getComponents() as $key => $row) {
 			if (method_exists($row, 'expand')) {
 				foreach ($row->expand() as $rownew) {
-					if (! call_user_func($this->showRules, $rownew)) {
+					if ($this->showRules && ! call_user_func($this->showRules, $rownew)) {
 						$rownew->setDisabled(True);
 					}
 					$data[] = $rownew;
 				}
 			}
 			else {
-				if (! call_user_func($this->showRules, $row)) {
+				if ($this->showRules && ! call_user_func($this->showRules, $row)) {
 					$row->setDisabled(True);
 				}
 				$data[] = $row;
