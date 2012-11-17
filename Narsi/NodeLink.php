@@ -70,7 +70,7 @@ class NodeLink extends NodeBase
 				$arg = call_user_func($arg, $presenter);
 			}
 		}
-		
+
 		$desc = $this->presenter->link($this->destination, $this->args);
 		$th = $this->presenter->link('this');
 
@@ -94,6 +94,34 @@ class NodeLink extends NodeBase
 			throw new \InvalidStateException('Not set presenter.');
 		}
 		return $this->presenter->link($this->destination, $this->args);
+	}
+
+
+
+	/**
+	 * @param  string  caption
+	 */
+	public function getRoute()
+	{
+		if (empty($this->presenter)) {
+			throw new \InvalidStateException('Not set presenter.');
+		}
+
+		$destination = $this->destination;
+		if ($destination{strlen($destination) - 1} == ':') {
+			$destination .= 'default';
+		}
+		if ($destination{0} != ':') {
+			$modul = $this->presenter->request->getPresenterName();
+			$modul = substr($modul, 0, strpos($modul, ':'));
+			$destination = $modul . ':' . $destination;
+		}
+		//$this->presenter->lazylink($this->destination, $this->args);
+		//$request = $this->presenter->lastCreatedRequest;
+		//$s = $request->getPresenterName() . ':' . (isset($request->parameters['action']) ? $request->parameters['action'] : 'default');
+		//dump($destination);
+		//dump($this->destination);
+		return $destination;
 	}
 
 
