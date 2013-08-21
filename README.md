@@ -1,4 +1,7 @@
 nette-component-narsi
 =====================
 
-Mena and navigation components plugin for nette.
+Status BETA. Don't using!
+
+
+Menu and navigation components plugin for nette.
