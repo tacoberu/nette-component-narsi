@@ -74,11 +74,9 @@ class NodeLink extends NodeBase
 		$desc = $this->presenter->link($this->destination, $this->args);
 		$th = $this->presenter->link('this');
 
-//		if (!$this->isCurrent)
-//			$this->isCurrent = ($desc == $th);
-#		if ($this->isCurrent = ($desc == $th)) {
-#			$this->parent->isCurrent = True;
-#		}
+		if (!$this->isCurrent) {
+			$this->isCurrent = ($desc == $th);
+		}
 
 		return $this;
 	}

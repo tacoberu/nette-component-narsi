@@ -33,6 +33,8 @@ class Navigation extends Control
 	private $counter = 0;
 
 
+	public $templateFile = Null;
+
 
 	/**
 	 * Adds push buttons with no default behavior.
@@ -59,7 +61,7 @@ class Navigation extends Control
 	 */
 	protected function createTemplate($class = NULL)
 	{
-		return parent::createTemplate()->setFile(__DIR__ . "/menu.latte");
+		return parent::createTemplate()->setFile($this->templateFile ?: __DIR__ . "/menu.latte");
 	}
 
 

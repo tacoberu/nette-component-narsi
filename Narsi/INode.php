@@ -29,4 +29,10 @@ interface INode
 	function setIsCurrent($bool);
 
 
+	/**
+	 * Zda se jedná o aktuální url.
+	 */
+	function getIsCurrent();
+
+
 }

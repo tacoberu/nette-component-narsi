@@ -29,16 +29,16 @@ abstract class NodeBase extends Container implements INode
 
 
 	private $counter = 0;
-	
+
 
 
 	private $showRules;
 
-	
+
 
 	private $presenter;
-	
-	
+
+
 
 	/** @var string */
 	private $label;
@@ -115,32 +115,12 @@ abstract class NodeBase extends Container implements INode
 		if (empty($name)) {
 			$name = ++$this->counter;
 		}
+		$this->addComponent($control, $name);
 		$control->setPresenter($this->getPresenter());
 		$control->setShowRules($this->showRules);
 
-		$this->addComponent($control, $name);
-
 		return $control;
 	}
-
-
-
-	public function addLink($title, $url, $args = array(), $isAjax = False, $name = Null)
-	{
-		$control = new NodeLink($title, $url, $args, $isAjax);
-		return $this->add($control, $name);
-	}
-
-
-
-	public function addLabel($title, $name = Null)
-	{
-		$control = new NodeLabel($title);
-		return $this->add($control, $name);
-	}
-
-
-
 
 
 
@@ -151,7 +131,7 @@ abstract class NodeBase extends Container implements INode
 	{
 		$this->isCurrent = $bool;
 
-		if ($this->parent instanceof INode) {
+		if ($this->parent instanceof INode && $bool) {
 			$this->parent->setIsCurrent($bool);
 		}
 
@@ -260,6 +240,28 @@ abstract class NodeBase extends Container implements INode
 	public function setShowRules($closure)
 	{
 		$this->showRules = $closure;
+	}
+
+
+
+	/**
+	 * Zkratka pro vytvoření odkazu.
+	 */
+	public function addLink($title, $url, $args = array(), $isAjax = False, $name = Null)
+	{
+		$control = new NodeLink($title, $url, $args, $isAjax);
+		return $this->add($control, $name);
+	}
+
+
+
+	/**
+	 * Zkratka pro vytvoření popisku
+	 */
+	public function addLabel($title, $name = Null)
+	{
+		$control = new NodeLabel($title);
+		return $this->add($control, $name);
 	}
 
 
