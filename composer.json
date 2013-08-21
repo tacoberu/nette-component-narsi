@@ -1,5 +1,5 @@
 {
-    "name": "taco/narsi",
+    "name": "tacoberu/narsi",
     "description": "Navigace menu nette plugin.",
     "require": {
     	"php": ">=5.3.0",
