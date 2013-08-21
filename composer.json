@@ -1,6 +1,6 @@
 {
-    "name": "taco/narsi",
-    "description": "Navigace menu nette plugin.",
+    "name": "tacoberu/nette-component-narsi",
+    "description": "Navigation and menu component for nette.",
     "require": {
     	"php": ">=5.3.0",
         "nette/nette": "*"
